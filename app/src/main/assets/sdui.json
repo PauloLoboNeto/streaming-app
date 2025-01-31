@@ -1,0 +1,50 @@
+[
+    {
+      "id": "texto1",
+      "type": "TEXT",
+      "content": "Texto 1",
+      "constraints": {
+        "topToTop": "parent",
+        "startToStart": "parent"
+      }
+    },
+    {
+      "id": "texto2",
+      "type": "TEXT",
+      "content": "Texto 2",
+      "constraints": {
+        "topToTop": "parent",
+        "leftToRight": "texto1"
+      }
+    },
+    {
+      "id": "texto3",
+      "type": "TEXT",
+      "content": "Texto 3",
+      "constraints": {
+        "topToBottom": "texto1",
+        "startToStart": "parent",
+        "rightToLeft": "parent"
+      }
+    },
+  {
+    "id": "texto4",
+    "type": "TEXT",
+    "content": "Texto 4",
+    "constraints": {
+      "topToTop": "parent",
+      "leftToRight": "texto2"
+    }
+  },
+    {
+      "id": "botao1",
+      "type": "BUTTON",
+      "text": "Clique Aqui",
+      "constraints": {
+        "bottomToBottom": "parent",
+        "startToStart": "parent",
+        "endToEnd": "parent"
+      }
+    }
+  ]
+

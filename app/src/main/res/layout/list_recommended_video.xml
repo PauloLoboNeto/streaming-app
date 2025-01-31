@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recommended_container"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:orientation="vertical"
+    >
+
+    <!-- Seção de comentários (Simulação com TextViews, substitua com conteúdo dinâmico) -->
+    <!-- Outros vídeos (Simulado com TextViews, substitua com conteúdo dinâmico) -->
+    <TextView
+        android:id="@+id/recommendedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recommended Videos"
+        app:layout_constraintTop_toTopOf="@id/recommended_container"
+        app:layout_constraintBottom_toTopOf="@id/recyclerViewListVideos"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:textStyle="bold" />
+
+    <!-- Simulação de lista de vídeos recomendados -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewListVideos"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/recommendedTitle"
+        android:clipToPadding="false"/>
+
+</LinearLayout>
