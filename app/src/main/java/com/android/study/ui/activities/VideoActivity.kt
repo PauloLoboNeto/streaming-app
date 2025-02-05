@@ -3,27 +3,19 @@ package com.android.study.ui.activities
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.HorizontalScrollView
 import androidx.activity.viewModels
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
-import com.android.study.R
 import com.android.study.databinding.StreamVideoBinding
 import com.android.study.ui.viewModels.VideoViewModel
-import com.android.study.ui.fragments.CommentsListFragment
-import com.android.study.ui.fragments.VideoListFragment
+import com.android.study.ui.views.ListRecommendedVideoView
 import kotlin.math.max
 import kotlin.math.min
 
@@ -37,7 +29,7 @@ class VideoActivity : AppCompatActivity() {
     private lateinit var binding: StreamVideoBinding
     private lateinit var player: ExoPlayer
     private lateinit var playerContainer: PlayerView
-    private lateinit var scrollView: FrameLayout
+    private lateinit var listRecommendedVideosContainer: ListRecommendedVideoView
     private val viewModel: VideoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,10 +39,8 @@ class VideoActivity : AppCompatActivity() {
         binding = StreamVideoBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
 
-        this.bindingRecyclers()
-
         playerContainer = binding.videoPlayer
-        scrollView = binding.videosContainer
+        listRecommendedVideosContainer = binding.videosContainer
 
         playerContainer.setOnTouchListener(OnTouchEvent())
         this.setupPlayer()
@@ -81,15 +71,6 @@ class VideoActivity : AppCompatActivity() {
         super.onResume()
         this.player.play()
     }
-
-    private fun bindingRecyclers(){
-        supportFragmentManager.beginTransaction()
-//            .replace(R.id.comments_container, CommentsListFragment())
-            .replace(R.id.videos_container, VideoListFragment())
-            .replace(R.id.list_videos_container, CommentsListFragment())
-            .commit()
-    }
-
 
     private inner class OnTouchEvent(): View.OnTouchListener {
         override fun onTouch(p0: View?, e: MotionEvent): Boolean {
@@ -131,7 +112,7 @@ class VideoActivity : AppCompatActivity() {
         playerContainer.translationY = min(max(0f, novaPosicaoElementoY), posicaoMaximaPermitidaY)
 
         //movimentar o scroll junto com o vídeo.
-        scrollView.translationY = playerContainer.translationY
+        listRecommendedVideosContainer.translationY = playerContainer.translationY
         posicaoAtualDoToqueY = posicaoAtualDoToque
     }
 
@@ -146,7 +127,7 @@ class VideoActivity : AppCompatActivity() {
             layoutParams.height = 350
             playerContainer.requestLayout().also {
                 playerContainer.animate().translationY(screenHeight - playerContainer.height.toFloat()).start()
-                scrollView.animate().translationY(screenHeight - 350f).start()
+                listRecommendedVideosContainer.animate().translationY(screenHeight - 350f).start()
             }
 
         } else {
@@ -154,7 +135,7 @@ class VideoActivity : AppCompatActivity() {
             layoutParams.height = 680
             playerContainer.requestLayout().also {
                 playerContainer.animate().translationY(0f).start()
-                scrollView.animate().translationY(0f).start()
+                listRecommendedVideosContainer.animate().translationY(0f).start()
             }
         }
         playerContainer.showController()
@@ -180,8 +161,8 @@ class VideoActivity : AppCompatActivity() {
             }
         })
 
-        player.prepare()
+//        player.prepare()
         // Começar a reprodução automática
-        player.playWhenReady = true
+//        player.playWhenReady = true
     }
 }

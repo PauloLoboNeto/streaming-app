@@ -20,25 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.zztestesdesconsiderar.HomeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Study">
-        </activity>
-
         <activity
             android:name=".ui.activities.VideoActivity"
             android:exported="false"
             android:theme="@style/Theme.Study">
         </activity>
-
-<!--        <activity-->
-<!--            android:name=".ui.features.SDUIActivity"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/Theme.Study">-->
-<!--        </activity>-->
-
     </application>
 
 </manifest>

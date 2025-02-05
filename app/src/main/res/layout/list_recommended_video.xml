@@ -17,6 +17,7 @@
         app:layout_constraintBottom_toTopOf="@id/recyclerViewListVideos"
         android:textSize="18sp"
         android:padding="16dp"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
     <!-- Simulação de lista de vídeos recomendados -->
