@@ -1,4 +1,4 @@
-package com.android.study.ui.features.comments
+package com.android.study.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

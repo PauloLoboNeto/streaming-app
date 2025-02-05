@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Study" >
 
         <activity
-            android:name=".ui.main.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
             <intent-filter>
@@ -22,13 +22,13 @@
         </activity>
 
         <activity
-            android:name=".ui.features.home.HomeActivity"
+            android:name=".ui.zztestesdesconsiderar.HomeActivity"
             android:exported="false"
             android:theme="@style/Theme.Study">
         </activity>
 
         <activity
-            android:name=".ui.features.video.VideoActivity"
+            android:name=".ui.activities.VideoActivity"
             android:exported="false"
             android:theme="@style/Theme.Study">
         </activity>

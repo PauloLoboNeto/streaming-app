@@ -1,9 +1,8 @@
-package com.android.study.ui.main
+package com.android.study.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import com.android.study.ui.features.video.VideoActivity
 
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

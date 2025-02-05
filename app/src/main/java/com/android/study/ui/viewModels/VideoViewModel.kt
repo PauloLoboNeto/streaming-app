@@ -1,4 +1,4 @@
-package com.android.study.ui.features.video
+package com.android.study.ui.viewModels
 
 import android.net.Uri
 import androidx.lifecycle.LiveData

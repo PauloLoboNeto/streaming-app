@@ -1,26 +1,29 @@
-package com.android.study.ui.features.video
+package com.android.study.ui.activities
 
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.HorizontalScrollView
 import androidx.activity.viewModels
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.study.R
 import com.android.study.databinding.StreamVideoBinding
-import com.android.study.ui.adapter.ListCommentAdapter
-import com.android.study.ui.adapter.ListRecomendedVideoAdapter
-import com.android.study.ui.features.comments.CommentsListFragment
-import com.android.study.ui.features.comments.VideoListFragment
+import com.android.study.ui.viewModels.VideoViewModel
+import com.android.study.ui.fragments.CommentsListFragment
+import com.android.study.ui.fragments.VideoListFragment
 import kotlin.math.max
 import kotlin.math.min
 
@@ -34,7 +37,7 @@ class VideoActivity : AppCompatActivity() {
     private lateinit var binding: StreamVideoBinding
     private lateinit var player: ExoPlayer
     private lateinit var playerContainer: PlayerView
-    private lateinit var scrollView: NestedScrollView
+    private lateinit var scrollView: FrameLayout
     private val viewModel: VideoViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +50,7 @@ class VideoActivity : AppCompatActivity() {
         this.bindingRecyclers()
 
         playerContainer = binding.videoPlayer
-        scrollView = binding.scrollView
+        scrollView = binding.videosContainer
 
         playerContainer.setOnTouchListener(OnTouchEvent())
         this.setupPlayer()
@@ -81,8 +84,9 @@ class VideoActivity : AppCompatActivity() {
 
     private fun bindingRecyclers(){
         supportFragmentManager.beginTransaction()
-            .replace(R.id.comments_container, CommentsListFragment())
+//            .replace(R.id.comments_container, CommentsListFragment())
             .replace(R.id.videos_container, VideoListFragment())
+            .replace(R.id.list_videos_container, CommentsListFragment())
             .commit()
     }
 
@@ -161,14 +165,14 @@ class VideoActivity : AppCompatActivity() {
         player = ExoPlayer.Builder(this)
             .build()
 
-        viewModel.uiGetVideoLiveData.value?.let { player.setMediaItem(it) }
-
         playerContainer.player = player
 
         playerContainer.setShowRewindButton(false)
         playerContainer.setShowFastForwardButton(false)
         playerContainer.setShowPreviousButton(false)
         playerContainer.setShowNextButton(false)
+
+        viewModel.uiGetVideoLiveData.value?.let { player.setMediaItem(it) }
 
         player.addListener(object : Player.Listener {
             override fun onPlayerError(error: PlaybackException) {

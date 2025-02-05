@@ -1,4 +1,4 @@
-package com.android.study.ui.features.home
+package com.android.study.ui.zztestesdesconsiderar
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.android.study.databinding.HomeActivityBinding
-import com.android.study.ui.features.video.VideoActivity
+import com.android.study.ui.activities.VideoActivity
 
 class HomeActivity: AppCompatActivity() {
 
